@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsArray, IsInt, IsString, MinLength } from 'class-validator'
+import { IsArray, IsInt, IsOptional, IsString, MinLength } from 'class-validator'
 
 export class CreateProductDto {
     @IsString({message: "Title: must be a string"})
@@ -20,6 +20,5 @@ export class CreateProductDto {
     gallery: string[]
 
     @ApiProperty({ description: 'Category id' })
-    @IsInt({message: "Category: must be a number"})
     category: number
 }
