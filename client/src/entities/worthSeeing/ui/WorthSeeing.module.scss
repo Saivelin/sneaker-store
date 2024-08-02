@@ -1,0 +1,44 @@
+@import "../variables.scss";
+
+.WorthSeeing {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-column-start: 1;
+	grid-column-end: 9;
+	background-color: $darkbg;
+	margin-top: 20px;
+	border-radius: 6px;
+	padding: 2% 1%;
+
+	&__header {
+		grid-column-start: 1;
+		grid-column-end: 6;
+		font-weight: 600;
+		font-size: 20px;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-column-start: 1;
+		grid-column-end: 6;
+		column-gap: 20px;
+	}
+
+	&__item {
+		display: grid;
+
+		&-header {
+			font-size: 20px;
+			font-weight: 600;
+			text-align: center;
+		}
+
+		&-img {
+			width: 100%;
+			height: auto;
+		}
+	}
+}

@@ -1,0 +1,59 @@
+@import "../variables.scss";
+
+.mainBlock {
+	grid-column-start: 3;
+	grid-column-end: 9;
+	background-color: $darkbg;
+	text-transform: uppercase;
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	background-image: url("../../../public/mainBlock.png");
+	background-size: 46%;
+	background-position: 90% 90%;
+	background-repeat: no-repeat;
+	border-radius: 6px;
+
+	&__header {
+		width: 100%;
+		text-align: center;
+		font-weight: 900;
+		font-size: 119px;
+		color: #212123;
+		text-transform: uppercase;
+		grid-column-start: 1;
+		grid-column-end: 9;
+	}
+
+	&__texts {
+		padding: 0 2%;
+		grid-column-start: 1;
+		grid-column-end: 6;
+	}
+
+	&__texts-added {
+		color: #616E74;
+		font-size: 16px;
+		font-weight: 500;
+	}
+
+	&__mainHeader {
+		line-height: 51.2px;
+		font-size: 42px;
+		color: #F6F6F7;
+		font-weight: 700;
+		margin-bottom: 24px;
+	}
+
+	&__btn {
+		font-weight: 600;
+		font-size: 16px;
+		background-color: $main;
+		padding: 2.5% 5%;
+		border-radius: 6px;
+	}
+
+	&__image {
+		grid-column-start: 6;
+		grid-column-end: 9;
+	}
+}

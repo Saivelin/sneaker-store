@@ -1,6 +1,6 @@
 import Button from './ui/Button/Button'
 import Container from './ui/Container/Container'
-import Input from './ui/Input/Input'
+import Inputs from './ui/Inputs/Inputs'
 import Spinner from './ui/Spinner/Spinner'
 
-export { Input, Button, Container, Spinner }
+export { Inputs, Button, Container, Spinner }

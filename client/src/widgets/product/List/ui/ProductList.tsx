@@ -5,14 +5,14 @@ import { useGetAllProductsQuery } from '@/entities/products'
 import { Spinner } from '@/shared'
 
 const ProductList = () => {
-    const { data: list, isFetching: fetching } = useGetAllProductsQuery()
+	const { data: list, isFetching: fetching } = useGetAllProductsQuery()
 
-    return (
-        <div>
-            {fetching === true ? <Spinner/> : null}
-            {list && list.length > 0 ? list.map(el => <ProductCard item={el} />) : null}
-        </div>
-    )
+	return (
+		<div>
+			{fetching === true ? <Spinner /> : null}
+			{list && list.length > 0 ? list.map((el) => <ProductCard item={el} />) : null}
+		</div>
+	)
 }
 
 export default ProductList

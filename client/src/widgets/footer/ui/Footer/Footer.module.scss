@@ -1,0 +1,30 @@
+@import "../../../../app/variables.scss";
+
+.footer {
+	display: grid;
+	background-color: $lightbg;
+
+	&__wrapper {
+		margin: 1% 18%;
+		background-color: $darkbg;
+		display: grid;
+		grid-template-columns: 1fr 1fr .5fr;
+		padding: 1% 2%;
+		align-items: center;
+
+		&>p>span {
+			color: $lightmain;
+		}
+	}
+
+	&__societies {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		justify-content: center;
+
+		&-item {
+			display: grid;
+			justify-self: center;
+		}
+	}
+}
