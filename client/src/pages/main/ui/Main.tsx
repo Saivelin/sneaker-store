@@ -1,7 +1,9 @@
+import { ProductList } from "@/widgets/product"
+
 const Main = () => {
-  return (
-    <div>Main</div>
-  )
+    return <div>
+        <ProductList/>
+    </div>
 }
 
 export default Main
