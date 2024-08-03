@@ -28,4 +28,8 @@ export class ProductService {
         }
         throw new HttpException(`Products is empty`, HttpStatus.NOT_FOUND)
     }
+
+    async getById(id: number){
+        return this.prisma.product.findFirst({where: {id: id}, include: {reviews: true, category: true}})
+    }
 }
