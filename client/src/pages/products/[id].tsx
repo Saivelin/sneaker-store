@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Categories from "@/features/categories/ui/categories/Categories";
+import Categories from "@/entities/categories/ui/categories/Categories";
 import Item from "@/entities/item/ui/Item";
 import Trending from "@/entities/trending/ui/Trending";
 

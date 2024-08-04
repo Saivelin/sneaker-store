@@ -1,4 +1,4 @@
-@import "../variables.scss";
+@import "../../../app/variables.scss";
 
 .sale {
 	background-color: $darkbg;
@@ -13,7 +13,7 @@
 		display: grid;
 		align-items: center;
 		justify-content: center;
-		background: url("../../../public/salebg.png");
+		background: url("/salebg.png");
 		background-repeat: no-repeat;
 		background-size: 120%;
 		background-position: 30% 95%;

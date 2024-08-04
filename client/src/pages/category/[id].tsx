@@ -4,7 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import MainBlock from "@/entities/mainBlock/ui/MainBlock";
-import Categories from "@/features/categories/ui/categories/Categories";
+import Categories from "@/entities/categories/ui/categories/Categories";
 
 export const getServerSideProps = async (context) => {
 	const { id } = context.params

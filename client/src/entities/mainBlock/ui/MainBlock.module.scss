@@ -1,4 +1,4 @@
-@import "../variables.scss";
+@import "../../../app/variables.scss";
 
 .mainBlock {
 	grid-column-start: 3;
@@ -7,7 +7,7 @@
 	text-transform: uppercase;
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
-	background-image: url("../../../public/mainBlock.png");
+	background-image: url("/mainBlock.png");
 	background-size: 46%;
 	background-position: 90% 90%;
 	background-repeat: no-repeat;

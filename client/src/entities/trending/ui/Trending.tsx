@@ -1,9 +1,10 @@
+"use client"
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Trending.module.scss"
 
-const Trending = ({ title }) => {
+const Trending = ({ title } : {title: string}) => {
 	const [trending, setTrending] = useState([
 		{
 			id: 1,
@@ -59,7 +60,7 @@ const Trending = ({ title }) => {
 				{trending.map((el) => {
 					return (
 						<div className={css.trending__item}>
-							<Image className={css.trending__item_img} src={el.img} width={1000} height={1000} />
+							<Image className={css.trending__item_img} src={el.img} width={1000} height={1000} alt=""/>
 							<div className={css.trending__item_about}>
 								<p className={css.trending__item_header}>{el.title}</p>
 								<p className={css.trending__item_category}>{el.category}</p>
