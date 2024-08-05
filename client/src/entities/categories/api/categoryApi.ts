@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Category, CategoryDto } from '../model/type';
+import { productsItem } from '@/entities/products/model/types';
 
 export const categoriesApi = createApi({
     reducerPath: 'categoriesApi',
@@ -17,6 +18,9 @@ export const categoriesApi = createApi({
             keepUnusedDataFor: 1,
             providesTags: result=>['CATEGORY']
         }),
+        getAllProductsInCategory: builder.query<{items: productsItem[], count: number}, {id: number, page: number, count: number}>({
+            query: ({id, page, count})=>({url: `/${id}/products?page=${page}&count=${count}`})
+        }),
         createUser: builder.mutation<any, Category>({
             query: data => ({ url: `/category`, method: 'POST', body: data }),
             invalidatesTags: ["CATEGORY"],
@@ -31,6 +35,7 @@ export const categoriesApi = createApi({
 export const {
     useGetUserQuery,
     useGetAllCategoriesQuery,
+    useGetAllProductsInCategoryQuery,
     useCreateUserMutation,
     useUpdateUserMutation,
 } = categoriesApi

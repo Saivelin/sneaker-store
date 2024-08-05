@@ -3,15 +3,27 @@ import { AppService } from './app.service'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
 import { extname } from 'path'
-import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger'
 
-@ApiTags("Features")
+@ApiTags('Features')
 @Controller()
 export class AppController {
     constructor(private readonly appService: AppService) {}
 
     @Post('upload')
-    @ApiOperation({summary: "Upload file"})
+    @ApiOperation({ summary: 'Upload file' })
+    @ApiConsumes('multipart/form-data')
+    @ApiBody({
+        schema: {
+            type: 'object',
+            properties: {
+                file: {
+                    type: 'string',
+                    format: 'binary'
+                }
+            }
+        }
+    })
     @UseInterceptors(
         FileInterceptor('file', {
             storage: diskStorage({
@@ -36,8 +48,8 @@ export class AppController {
     }
 
     @Get('uploads/:filename')
-    @ApiOperation({summary: "Get uploaded file"})
-    async getFile(@Param("filename") filename: string, @Res() res: any){
-        res.sendFile(filename, {root:'uploads'})
+    @ApiOperation({ summary: 'Get uploaded file' })
+    async getFile(@Param('filename') filename: string, @Res() res: any) {
+        res.sendFile(filename, { root: 'uploads' })
     }
 }

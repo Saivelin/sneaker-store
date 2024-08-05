@@ -18,4 +18,13 @@ export class ProductController {
     getAll(){
         return this.productService.getAll()
     }
+
+    @Get('/trending')
+    getTrending(@Param() query: any){
+        let count = 5
+        if(query?.count){
+            count = query.count
+        }
+        return this.productService.getTrending(count)
+    }
 }

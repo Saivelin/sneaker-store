@@ -8,6 +8,8 @@ import { PrismaService } from 'src/prisma.service'
 export class ProductService {
     constructor(public prisma: PrismaService) {}
 
+    includeAll = {reviews: true, category: true}
+
     async create(createProductDto: CreateProductDto) {
         const exist = await this.prisma.product.findFirst({ where: { title: createProductDto.title } })
         if (exist) {
@@ -22,7 +24,7 @@ export class ProductService {
     }
 
     async getAll() {
-        const items = await this.prisma.product.findMany({ include: { category: true, reviews: true } })
+        const items = await this.prisma.product.findMany({ include: this.includeAll })
         if (items) {
             return items
         }
@@ -30,6 +32,10 @@ export class ProductService {
     }
 
     async getById(id: number){
-        return this.prisma.product.findFirst({where: {id: id}, include: {reviews: true, category: true}})
+        return this.prisma.product.findFirst({where: {id: id}, include: this.includeAll})
+    }
+
+    async getTrending(count: number){
+        return this.prisma.product.findMany({include: this.includeAll, take: count, orderBy: {views: "desc"}})
     }
 }

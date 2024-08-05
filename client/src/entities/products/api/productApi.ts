@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { productsItem } from '../model/types'
 
 export const productsApi = createApi({
     reducerPath: 'productsApi',
@@ -15,6 +16,15 @@ export const productsApi = createApi({
             query: () => ({ url: `/product` }),
             providesTags: result => ['product']
         }),
+        getTrending: builder.query<productsItem[], { count?: number }>({
+            query: data => {
+                let url = '/product/trending'
+                if (data?.count) {
+                    url += `?count=${data.count}`
+                }
+                return { url }
+            }
+        }),
         createProduct: builder.mutation<any, any>({
             query: data => ({ url: `/product`, method: 'POST', body: data }),
             invalidatesTags: ['product']
@@ -26,5 +36,5 @@ export const productsApi = createApi({
     })
 })
 
-export const { useGetAllProductsQuery, useGetProductQuery, useCreateProductMutation, useUpdateProductMutation } =
+export const { useGetAllProductsQuery, useGetProductQuery, useCreateProductMutation, useUpdateProductMutation, useGetTrendingQuery } =
     productsApi

@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body,UsePipes, ValidationPipe, Param } from '@nestjs/common'
+import { Controller, Get, Post, Body,UsePipes, ValidationPipe, Param, Query, HttpException, HttpStatus } from '@nestjs/common'
 import { CategoryService } from './category.service'
 import { CreateCategoryDto } from './dto/create-category.dto'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiParam, ApiTags } from '@nestjs/swagger'
 
 @ApiTags("Categories")
 @Controller('category')
@@ -19,7 +19,11 @@ export class CategoryController {
     }
 
     @Get('/:id/products')
-    getProducts(@Param() params: {id: number}){
-        return this.categoryService.getProductsByCategoryId(+params.id)
+    @ApiParam({name: "id", required: true, type: "integer"})
+    getProducts(@Param() params: {id: number}, @Query() query){
+        if(query?.page && query?.count){
+            return this.categoryService.getProductsByCategoryId(+params.id, +query.page, +query.count)
+        }
+        throw new HttpException("page or count is missing", HttpStatus.BAD_REQUEST)
     }
 }

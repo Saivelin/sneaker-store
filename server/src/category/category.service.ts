@@ -22,11 +22,12 @@ export class CategoryService {
         return this.prisma.category.findMany()
     }
 
-    async getProductsByCategoryId(id: number){
+    async getProductsByCategoryId(id: number, page: number, count: number){
         let products = (await this.prisma.category.findFirst({where: {id: id}, select: {products: true}})).products
         if(!products){
             throw new HttpException(`Category with id ${id} does not exist. Or there are no products in the selected category`, HttpStatus.NOT_FOUND)
         }
-        return products
+        let res = [...products.slice((page - 1) * count, page * count)]
+        return {items: res, count: products.length}
     }
 }

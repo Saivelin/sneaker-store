@@ -1,4 +1,6 @@
-interface productsItem {
+import { Category } from "@/entities/categories"
+
+export interface productsItem {
         id: number
         title: string
         description: string
@@ -8,6 +10,7 @@ interface productsItem {
         categoryId: 1,
         createdAt: Date,
         updatedAt: Date,
-        category: any
+        category: Category
         reviews: any
+        views?: number
 }

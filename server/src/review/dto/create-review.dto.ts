@@ -11,7 +11,7 @@ export class CreateReviewDto {
     rating: number
     @IsInt()
     @ApiProperty({description: "Product of review", default: 1})
-    product: number
+    product: any
     @IsInt()
     @ApiProperty({description: "Author of review", default: 1})
     author: number
