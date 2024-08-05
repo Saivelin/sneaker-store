@@ -4,7 +4,9 @@ import ReduxProvider from './redux-provider'
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
     return (
         <ReduxProvider>
-            <ChakraProvider>{children}</ChakraProvider>
+            <ChakraProvider>
+                {children}
+                </ChakraProvider>
         </ReduxProvider>
     )
 }

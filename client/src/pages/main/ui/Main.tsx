@@ -5,17 +5,21 @@ import WorthSeeing from "@/entities/worthSeeing/ui/WorthSeeing";
 import Categories from "@/entities/categories/ui/categories/Categories";
 import { ProductList } from "@/widgets/product"
 import { Box } from "@chakra-ui/react";
+import { Container } from "@/shared";
+import styles from "./Main.module.scss"
+
 const Main = () => {
 	return (
-		<Box bg="#212123" className="mainPage">
-			<Categories />
-			<ProductList />
-			<MainBlock />
+		<Container>
+            <div className={styles.mainGroup}>
+                <Categories />
+                <MainBlock />
+            </div>
 			<Trending title={"Trending"} />
 			<WorthSeeing />
 			<Sale />
 			<Trending title={"Less than 100$"} />
-		</Box>
+		</Container>
 	);
 }
 

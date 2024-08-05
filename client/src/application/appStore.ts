@@ -3,12 +3,14 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 import { rootReducer } from './appReducer'
 import { usersApi } from '@/entities/user'
 import { productsApi } from '@/entities/products'
+import { categoriesApi } from '@/entities/categories'
 
 export const store = configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware => getDefaultMiddleware({}).concat([
         usersApi.middleware,
-        productsApi.middleware
+        productsApi.middleware,
+        categoriesApi.middleware,
     ]),
     devTools: process.env.NODE_ENV !== 'production'
 })

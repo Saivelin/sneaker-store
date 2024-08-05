@@ -1,9 +1,8 @@
 import { InputHTMLAttributes } from 'react'
-import { useColorMode, InputGroup, InputLeftElement, Icon, Input } from "@chakra-ui/react";
+import { InputGroup, InputLeftElement, Icon, Input } from "@chakra-ui/react";
 import { AiOutlineSearch } from 'react-icons/ai'
 
 const Inputs = (props: InputHTMLAttributes<HTMLInputElement>) => {
-	const { colorMode, toggleColorMode } = useColorMode();
 	return (
 		<InputGroup bg={"#191919"} className="header__inputGroup">
 			<InputLeftElement

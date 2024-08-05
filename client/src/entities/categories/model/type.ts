@@ -3,3 +3,7 @@ export interface Category {
     title: string
     products?: any
 }
+
+export interface CategoryDto {
+    title: string
+}

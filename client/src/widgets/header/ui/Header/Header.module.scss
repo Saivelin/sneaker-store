@@ -1,60 +1,61 @@
 @import "../../../../app/variables.scss";
 
 .header {
-	padding: 1% 18%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	align-items: center;
+    padding: 1% 18%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    background: $mainBackgroundColor;
 
-	&__user {
-		align-items: center;
-		display: flex;
-		column-gap: 15px;
-	}
+    &__user {
+        align-items: center;
+        display: flex;
+        column-gap: 15px;
+    }
 
-	&__username {
-		transition: .4s;
-		cursor: pointer;
+    &__username {
+        transition: .4s;
+        cursor: pointer;
 
-		&:hover {
-			color: $main;
-		}
-	}
+        &:hover {
+            color: $main;
+        }
+    }
 
-	&__userimage {
-		background-color: transparent;
-	}
+    &__userimage {
+        background-color: transparent;
+    }
 
-	&__userimage-wrapper {
-		display: grid;
-		align-items: center;
-		justify-content: center;
-		width: 46px;
-		height: 46px;
-		background-color: $darkbg;
-		border-radius: 100%;
-	}
+    &__search {
+        border-radius: 10px;
 
-	&__inputGroup {
-		border-radius: 10px;
+        &>* {
+            background-color: $darkbg !important;
+            outline: none !important;
+            border: 1px solid $darkbg !important;
+            box-shadow: none !important;
+        }
+    }
 
-		&>* {
-			background-color: $darkbg !important;
-			outline: none !important;
-			border: 1px solid $darkbg !important;
-			box-shadow: none !important;
-		}
-	}
+    &__input {
+        &:focus-visible~.header__inputGroup {
+            border: 1px $main solid !important;
+        }
+    }
 
-	&__input {
-		&:focus-visible~.header__inputGroup {
-			border: 1px $main solid !important;
-		}
-	}
+    &__nav {
+        display: flex;
+        justify-content: right;
+        column-gap: 30px;
+    }
+}
 
-	&__nav {
-		display: flex;
-		justify-content: right;
-		column-gap: 30px;
-	}
+.header__userimage__wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 100%;
+    background-color: $darkbg;
 }

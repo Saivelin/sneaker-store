@@ -1,3 +1,5 @@
-import { Category } from "./model/type"
+import { Category } from './model/type'
+import { categoriesApi } from './api/categoryApi'
 
-export type { Category } 
+export type { Category }
+export { categoriesApi }
