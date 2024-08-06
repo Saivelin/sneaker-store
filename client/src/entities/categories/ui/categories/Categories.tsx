@@ -10,7 +10,7 @@ import { Category } from '../../model/type'
 import { useGetAllCategoriesQuery } from '../../api/categoryApi'
 import { Spinner } from '@/shared'
 
-const Categories = () => {
+const Categories = ({selectedCategory} : {selectedCategory?: number}) => {
     const {data: categories, isFetching} = useGetAllCategoriesQuery()
 
     return (
@@ -27,7 +27,7 @@ const Categories = () => {
                         return (
                             <Link
                                 key={i}
-                                className={css.categories__item}
+                                className={`${css.categories__item} ${selectedCategory && +selectedCategory === el.id ? css.categories__item__active : ''}`}
                                 href={'/category/' + el.id}
                             >
                                 {el.title}

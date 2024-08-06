@@ -4,8 +4,9 @@ import css from './MiniList.module.scss'
 import { useGetTrendingQuery } from '@/entities/products/api/productApi'
 import { Spinner } from '@/shared'
 import { productsItem } from '../../model/types'
+import ProductItem from '../ProductItem/ProductItem'
 
-const MiniList = ({ title, data, isFetching }: { title: string, data?: productsItem[], isFetching: boolean }) => {
+const MiniList = ({ title, data, isFetching }: { title: string; data?: productsItem[]; isFetching: boolean }) => {
     // const [trending, setTrending] = useState([
     // 	{
     // 		id: 1,
@@ -59,30 +60,7 @@ const MiniList = ({ title, data, isFetching }: { title: string, data?: productsI
             <div className={css.trending__header}>{title}</div>
             <div className={css.trending__items}>
                 {isFetching ? <Spinner /> : null}
-                {data &&
-                    data?.length &&
-                    data?.length > 0 &&
-                    data.map(el => {
-                        return (
-                            <div className={css.trending__item}>
-                                <img
-                                    className={css.trending__item_img}
-                                    src={`${process.env.NEXT_PUBLIC_API_UPLOAD_ENDPOINT}/${el.gallery[0]}`}
-                                    alt=''
-                                />
-                                <div className={css.trending__item_about}>
-                                    <p className={css.trending__item_header}>{el.title}</p>
-                                    <p className={css.trending__item_category}>{el.category.title}</p>
-                                    <div className={css.trending__item_footer}>
-                                        <div className={css.trending__item_prices}>
-                                            <p className={css.trending__item_price}>{el.price}</p>
-                                        </div>
-                                        <p className={css.trending__item_purchased}>{el.views} people purchased</p>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })}
+                {data && data?.length && data?.length > 0 && data.map(el => <ProductItem product={el} />)}
             </div>
             <div className={css.trending__btnWrapper}>
                 <Link

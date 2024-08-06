@@ -30,4 +30,8 @@ export class CategoryService {
         let res = [...products.slice((page - 1) * count, page * count)]
         return {items: res, count: products.length}
     }
+
+    async getById(id: number){
+        return this.prisma.category.findFirst({where: {id}})
+    }
 }

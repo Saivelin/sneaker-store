@@ -1,0 +1,11 @@
+@import "../../../../app/variables.scss";
+
+.list{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+    background-color: $darkbg;
+    row-gap: 5%;
+    padding: 3% 0 6% 0;
+    border-radius: 10px;
+}

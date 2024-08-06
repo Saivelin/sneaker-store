@@ -1,0 +1,61 @@
+@import "../../../../app/variables.scss";
+
+.item{
+    border-radius: 8px;
+    display: grid;
+    justify-self: center;
+    align-self: center;
+    background: #212123;
+    .imageContainer{
+        position: relative;
+
+        .img{
+            border-radius: 8px 8px 0 0;
+            max-height: 225px;
+            display: block;
+        }
+    }
+    &_header{
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 18px;
+    }
+    &_about{
+        padding: 7% 4% 0 4%;
+        display: grid;
+        grid-template-rows: 1fr .5fr 3fr;
+    }
+    &_category{
+        color: #B8B8B8;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    &_footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &_prices{
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+    }
+    &_price{
+        color: $lightmain;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    &_oldprice{
+        text-decoration:line-through;
+        color: #576067;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 16px;
+    }
+    &_purchased{
+        color: #576067;
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 10px;
+    }
+}

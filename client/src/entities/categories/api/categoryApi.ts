@@ -9,7 +9,7 @@ export const categoriesApi = createApi({
     }),
     tagTypes: ['CATEGORY'],
     endpoints: builder => ({
-        getUser: builder.query<Category, { id: number }>({
+        getCategory: builder.query<Category, { id: number }>({
             query: ({ id }) => ({ url: `/category/${id}` }),
             providesTags: result=>['CATEGORY']
         }),
@@ -19,7 +19,7 @@ export const categoriesApi = createApi({
             providesTags: result=>['CATEGORY']
         }),
         getAllProductsInCategory: builder.query<{items: productsItem[], count: number}, {id: number, page: number, count: number}>({
-            query: ({id, page, count})=>({url: `/${id}/products?page=${page}&count=${count}`})
+            query: ({id, page, count})=>({url: `/category/${id}/products?page=${page}&count=${count}`})
         }),
         createUser: builder.mutation<any, Category>({
             query: data => ({ url: `/category`, method: 'POST', body: data }),
@@ -33,7 +33,7 @@ export const categoriesApi = createApi({
 })
 
 export const {
-    useGetUserQuery,
+    useGetCategoryQuery,
     useGetAllCategoriesQuery,
     useGetAllProductsInCategoryQuery,
     useCreateUserMutation,

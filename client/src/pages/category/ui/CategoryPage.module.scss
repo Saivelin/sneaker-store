@@ -1,0 +1,38 @@
+@import "../../../app/variables.scss";
+
+.content{
+    margin: 2% 0;
+}
+
+    .pagesPagination{
+        display: flex;
+        justify-content: center;
+        grid-column-start: 1;
+        grid-column-end: 9;
+        column-gap: 10px;
+        margin-top: 20px;
+        .item{
+            font-size: 15px;
+            font-weight: 600;
+            background-color: $lightbg;
+            color: #576067;
+            width: 40px;
+            height: 40px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 8px;
+            transition: .4s;
+        }
+        .itemActive{
+            background-color: $main;
+            color: $color;
+        }
+    }
+
+.trending__items{
+    grid-column-start: 1 !important;
+    grid-column-end: 9 !important;
+    row-gap: 20px;
+}

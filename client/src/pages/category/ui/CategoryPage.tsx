@@ -1,60 +1,59 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import MainBlock from "@/entities/mainBlock/ui/MainBlock";
-import Categories from "@/entities/categories/ui/categories/Categories";
-import { useGetAllProductsInCategoryQuery } from "@/entities/categories/api/categoryApi";
-import { Spinner } from "@/shared";
-import { useParams } from "next/navigation";
+import { useEffect, useState } from 'react'
+import { useGetAllProductsInCategoryQuery, useGetCategoryQuery } from '@/entities/categories/api/categoryApi'
+import { Container, Spinner } from '@/shared'
+import { MainBanner } from '@/widgets/mainBanner'
+import { ProductList } from '@/entities/products'
+import styles from './CategoryPage.module.scss'
+import Header from '@/shared/ui/Header/Header'
 
-const CategoryPage = ({ params }: { params: { id: number } }) => {
-    const {data: categories, isFetching} = useGetAllProductsInCategoryQuery({id: params.id, page: 1, count: 10})
+const CategoryPage = ({ id }: { id: number }) => {
+    const [page, setPage] = useState<number>(1)
+    const [count, setCount] = useState<number>(10)
+    const [pageCount, setPageCount] = useState<number[]>([1, 2, 3])
 
-	const [page, setPage] = useState(1)
-	const [pageCount, setPageCount] = useState([]);
+    const { data: categories, isFetching } = useGetAllProductsInCategoryQuery({ id: id, page: page, count: 10 })
+    const { data: category, isFetching: categoryFetch } = useGetCategoryQuery({ id })
 
+    useEffect(() => {
+        if (categories && categories?.count) {
+            const totalPages = Math.ceil(categories?.count / count)
+            const pagesArray = Array.from({ length: totalPages }, (v, i) => i + 1)
+            setPageCount([...pagesArray])
+        }
+    }, [categories])
 
-	return (
-		<div className="productsToCat">
-			<Categories />
-			<MainBlock />
-            {isFetching ? <Spinner/> : null}
-			{categories && categories?.items && categories.items.length != 0 ?
-				<div className='trending'>
-					<div className="trending__items">
-						{categories.items.map((el, i) => {
-							return (
-								<div className="trending__item" key={i}>
-									<Image loader={(e) => { return process.env.NEXT_PUBLIC_API_UPLOAD_ENDPOINT + "/" + el?.gallery[0] }} alt={el?.title} className="trending__item-img" src={process.env.NEXT_PUBLIC_API_UPLOAD_ENDPOINT + "/" + el?.gallery[0]} width={1000} height={1000} />
-									<div className="trending__item-about">
-										<Link href={"/products/" + el?.id} className="trending__item-header">{el?.title}</Link>
-										<p className="trending__item-category">{el?.category.title}</p>
-										<div className="trending__item-footer">
-											<div className="trending__item-prices">
-												<p className="trending__item-price">{el?.price}$</p>
-											</div>
-											<p className="trending__item-purchased">{el?.views} people purchased</p>
-										</div>
-									</div>
-								</div>
-							)
-						})}
-					</div>
-					<div className="productsToCat__pagesPagination">
-						{pageCount.map((el) => {
-							return <button onClick={(ev) => { setPage(el) }} className={page == el ? "productsToCat__pagesPagination-item productsToCat__pagesPagination-itemActive" : "productsToCat__pagesPagination-item"}>{el}</button>
-						})}
-					</div>
-				</div>
-				:
-				<div className='trending'>
-					<h2>No such products</h2>
-				</div>
-			}
-		</div>
-	);
-};
+    return (
+        <Container>
+            <MainBanner selectedCategory={id} />
+            {isFetching ? <Spinner /> : null}
+            {categories && categories?.items && categories.items.length != 0 ? (
+                <div className={styles.content}>
+                    {category ? <Header style={{ marginBottom: '20px' }}>{category.title}</Header> : <Spinner />}
+                    <ProductList data={categories.items} />
+                    <div className={styles.pagesPagination}>
+                        {pageCount.map(el => {
+                            return (
+                                <button
+                                    onClick={ev => {
+                                        setPage(el)
+                                    }}
+                                    className={page == el ? `${styles.item} ${styles.itemActive}` : styles.item}
+                                >
+                                    {el}
+                                </button>
+                            )
+                        })}
+                    </div>
+                </div>
+            ) : (
+                <div className='trending'>
+                    <h2>No such products</h2>
+                </div>
+            )}
+        </Container>
+    )
+}
 
-export default CategoryPage;
+export default CategoryPage

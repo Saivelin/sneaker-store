@@ -35,6 +35,10 @@
 		&:hover {
 			color: $lightmain;
 		}
+
+        &__active{
+            color: $lightmain;
+        }
 	}
 
 	&__footer {

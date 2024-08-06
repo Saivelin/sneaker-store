@@ -5,13 +5,17 @@ import { Box } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import css from './Header.module.scss'
+import { useRouter } from 'next/navigation'
 
 // AiOutlineSearch
 const Header = () => {
+    const router = useRouter()
     return (
         <Box className={css.header}>
             <div className={css.header__logo}>
                 <Image
+                    onClick={()=>{router.push('/')}}
+                    style={{cursor: "pointer"}}
                     src='/logo.svg'
                     width={100}
                     height={30}

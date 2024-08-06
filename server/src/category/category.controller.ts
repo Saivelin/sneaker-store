@@ -26,4 +26,12 @@ export class CategoryController {
         }
         throw new HttpException("page or count is missing", HttpStatus.BAD_REQUEST)
     }
+
+    @Get(':id')
+    getCategory(@Param() params: {id: number}){
+        if(+params.id){
+            return this.categoryService.getById(+params.id)
+        }
+        throw new HttpException("id is missing", HttpStatus.BAD_REQUEST)
+    }
 }
