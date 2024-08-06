@@ -2,6 +2,7 @@ import Image from "next/image"
 import { productsItem } from "../../model/types"
 import Link from "next/link"
 import styles from "./ProductItem.module.scss"
+import { onErrorImage } from "../../helpers/imageOnError"
 
 const ProductItem = ({product} : {product: productsItem}) => {
     return (
@@ -14,9 +15,7 @@ const ProductItem = ({product} : {product: productsItem}) => {
                     alt={product?.title}
                     className={styles.img}
                     src={process.env.NEXT_PUBLIC_API_UPLOAD_ENDPOINT + "/" + product?.gallery[0]}
-                    onError={(e: any)=>{
-                        e.target.src = process.env.NEXT_PUBLIC_API_UPLOAD_ENDPOINT + "/defaultProductImage.png"
-                    }}
+                    onError={onErrorImage}
                 />
             </div>
             <div className={styles.item_about}>

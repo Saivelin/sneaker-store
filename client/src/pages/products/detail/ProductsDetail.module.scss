@@ -1,0 +1,24 @@
+@import "../../../app/variables.scss";
+
+.container{
+    background-color: $darkbg;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    &>*{
+        display: grid;
+    }
+
+    &>:first-child{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    &>:last-child{
+        grid-column-start: 2;
+        grid-column-end: 4;
+    }
+}

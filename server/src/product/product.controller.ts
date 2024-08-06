@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common'
 import { ProductService } from './product.service'
 import { CreateProductDto } from './dto/create-product.dto'
 import { UpdateProductDto } from './dto/update-product.dto'
@@ -26,5 +26,13 @@ export class ProductController {
             count = query.count
         }
         return this.productService.getTrending(count)
+    }
+
+    @Get(':id')
+    getById(@Param() query: any){
+        if(!query?.id){
+            throw new HttpException("id is missing", HttpStatus.BAD_REQUEST)
+        }
+        return this.productService.getById(+query.id)
     }
 }
