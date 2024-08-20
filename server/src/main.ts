@@ -22,8 +22,10 @@ async function bootstrap() {
     SwaggerModule.setup('swagger', app, document)
 
     if (process.env.PORT) {
+        console.log(`started on ${process.env.PORT}`)
         await app.listen(process.env.PORT)
     } else {
+        console.log(`started on 3005`)
         await app.listen(3005)
     }
 }

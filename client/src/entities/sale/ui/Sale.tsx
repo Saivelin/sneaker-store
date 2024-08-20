@@ -15,7 +15,7 @@ const Sale = () => {
 					<Link className={css.sale__btn} href={"/"} >See more</Link>
 				</div>
 			</div>
-			<Image src={"/newYear.png"} width={600} height={600} />
+			<Image src={"/newYear.png"} width={600} height={600} alt=""/>
 		</div>
 	);
 };

@@ -1,0 +1,9 @@
+# Base image
+FROM node:20.16.0
+WORKDIR /usr/src/app
+COPY . .
+RUN npm install
+RUN npm run build
+RUN rm -rf ./src
+EXPOSE 3005
+CMD [ "npm", "run", "start:prod" ]

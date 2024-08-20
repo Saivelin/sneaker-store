@@ -1,4 +1,4 @@
-import Main from "@/pages/main/ui/Main";
+import Main from "@/modules/main/ui/Main";
 
 const page = () => (<Main/>)
 

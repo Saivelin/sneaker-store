@@ -34,7 +34,7 @@ const WorthSeeing = () => {
 				{worth.map((el) => {
 					return (
 						<div className={css.WorthSeeing__item}>
-							<Image className={css.WorthSeeing__item_img} src={el.img} width={400} height={300} />
+							<Image className={css.WorthSeeing__item_img} src={el.img} width={400} height={300} alt=""/>
 							<h4 className={css.WorthSeeing__item_header}>{el.cat}</h4>
 						</div>
 					)
